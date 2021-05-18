@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block body %}
+<div>
+    <h1>Order Detail</h1>
+</div>
+
+<div class="container d-flex">
+
+    <div class="card" style="width: 18rem;">
+        <img src="" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Product Name: {{ order_details.product_name }}</h5>
+            <p class="card-text">Receiver Name: {{ order_details.receiver_name }}</p>
+            <p class="card-text">Receiver Number: {{ order_details.receiver_number }}</p>
+            <p class="card-text">Receiver Address: {{ order_details.receiver_address }}</p>
+            <p class="card-text">Alternative Number: {{ order_details.receiver_alternate_number }}</p>
+            <p class="card-text">Vendor: {{ order_details.vendor }}</p>
+            <p class="card-text">Vendor Address: {{ order_details.vendor.vendor_address }}</p>
+            <a href="" class="btn btn-primary">Edit</a>
+            <a href="" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h4>Order Status</h4>
+            {% if order_details.is_rider_assigned == False %}
+            Rider Not Assigned <a href="{% url 'assign_rider' order_details.id %}" class="btn btn-danger">Assign Rider</a>
+            {% endif %}
+            {% if order_details.is_rider_assigned == True and order_details.is_delivered == False %}
+            <p class="card-text">Rider: {{ order_details.rider_assigned }}</p>
+            <p class="card-text">Delivered Status: {{ order_details.is_delivered }}</p>
+            {% endif %}
+            {% if order_details.is_rider_assigned == True and order_details.is_delivered == True %}
+            <p class="card-text">Rider: {{ order_details.rider_assigned }}</p>
+            <p class="card-text">Delivered Status: {{ order_details.is_delivered }}</p>
+            <p class="card-text">Delivered Time: {{ order_details.delivered_datetime }}</p>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<section>
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">S.N</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Receiver Name</th>
+                <th scope="col">Receiver Contact</th>
+                <th scope="col">Receiver Address</th>
+                <th scope="col">Vendor Name</th>
+                <th scope="col">Assigned Rider</th>
+<!--                <th scope="col">Delivered</th>-->
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <a href="{% url 'create_order' %}" class="btn btn-primary">Create Order</a>
+            <!--    <a href="" class="btn btn-info">Export Riders(CSV)</a>-->
+            <tbody>
+            {% for order in order_list %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>
+                    <a href="{% url 'order_detail' order.id %}" class="fs-5 fw-normal text-decoration-none text-dark text-capitalize">
+                        {{ order.product_name }}
+                    </a>
+                </td>
+                <td class="fs-5 fw-normal text-decoration-none text-dark text-capitalize">{{ order.receiver_name }}</td>
+                <td class="fs-5 fw-normal text-decoration-none text-dark text-capitalize">{{ order.receiver_number }}
+                </td>
+                <td class="fs-5 fw-normal text-decoration-none text-dark text-capitalize">{{ order.receiver_address }}
+                </td>
+                <td class="fs-5 fw-normal text-decoration-none text-dark text-capitalize">{{ order.vendor }}</td>
+                {% if order.is_rider_assigned == True %}
+                <td class="fs-5 fw-normal text-decoration-none text-dark text-capitalize">{{ order.rider_assigned }}
+                </td>
+                <!--                <td class="fs-5 fw-normal text-decoration-none text-dark text-capitalize">{{ order.is_delivered }}</td>-->
+                {% endif %}
+                {% if order.is_rider_assigned == False %}
+                <td class="fs-5 fw-normal text-decoration-none text-dark text-capitalize">
+                    <a href="{% url 'assign_rider' order.id %}" class="btn btn-danger">Assign Rider</a>
+                </td>
+                {% endif %}
+
+                <td>
+                    <a href="{% url 'edit_order' order.id %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'delete_order' order.id %}" class="btn btn-danger">Delete</a>
+
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

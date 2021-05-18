@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<section>
+    <div class="container">
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">S.N</th>
+      <th scope="col">Rider Name</th>
+      <th scope="col">Contact No.</th>
+      <th scope="col">Address</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+    <a href="{% url 'create_rider' %}" class="btn btn-primary">Create Rider</a>
+    <a href="{% url 'export_riders_csv' %}" class="btn btn-info">Export Riders(CSV)</a>
+  <tbody>
+  {% for rider in rider_list %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>
+          <a href="{% url 'rider_detail' rider.pk %}" class="fs-5 fw-normal text-decoration-none text-dark text-capitalize">
+          {{ rider.first_name }}  {{ rider.last_name }}
+          </a>
+      </td>
+      <td class="fs-5 fw-normal text-decoration-none text-dark text-capitalize">{{ rider.contact_number }}</td>
+      <td class="fs-5 fw-normal text-decoration-none text-dark text-capitalize">{{ rider.address }}</td>
+      <td>
+          <a href="{% url 'edit_rider' rider.id %}" class="btn btn-primary">Edit</a>
+          <a href="{% url 'delete_rider' rider.id %}" class="btn btn-danger">Delete</a>
+      </td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+    </div>
+</section>
+{% endblock %}

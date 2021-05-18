@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="Container">
+    <h3>Register Rider</h3>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" class="btn btn-info">
+        <a href="{% url 'rider_list' %}" class="btn btn-danger">Cancel</a>
+    </form>
+
+</div>
+
+{% endblock %}
+

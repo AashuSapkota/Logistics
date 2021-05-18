@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<section>
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">S.N</th>
+                <th scope="col">Vendor Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Contact Number</th>
+                <th scope="col">Contact Person</th>
+                <th scope="col">Contact Person Number</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <a href="{% url 'create_vendor' %}" class="btn btn-primary">Create Vendor</a>
+            <a href="{% url 'export_vendors_csv' %}" class="btn btn-info">Export Vendors(CSV)</a>
+            <tbody>
+            {% for vendor in vendor_list %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>
+                    <a href="{% url 'vendor_detail' vendor.pk %}"
+                       class="fs-5 fw-normal text-decoration-none text-dark text-capitalize">
+                        {{ vendor.vendor_name }}
+                    </a>
+                </td>
+                <td class="fs-5 fw-normal text-decoration-none text-dark text-capitalize">
+                    {{ vendor.vendor_address }}
+                </td>
+                <td class="fs-5 fw-normal text-decoration-none text-dark text-capitalize">
+                    {{ vendor.vendor_contact }}
+                </td>
+                <td class="fs-5 fw-normal text-decoration-none text-dark text-capitalize">
+                    {{ vendor.vendor_contact_person }}
+                </td>
+                <td class="fs-5 fw-normal text-decoration-none text-dark text-capitalize">
+                    {{ vendor.vendor_contact_person_number }}
+                </td>
+                <td>
+                    <a href="{% url 'edit_vendor' vendor.id %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'delete_vendor' vendor.id %}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

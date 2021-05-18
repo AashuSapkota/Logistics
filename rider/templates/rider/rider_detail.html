@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block body %}
+<div>
+    <h1>Rider Detail</h1>
+</div>
+
+<div class="card" style="width: 18rem;">
+    <img src="{{ rider_detail.rider_img.url }}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{ rider_detail.first_name }} {{ rider_detail.last_name }}</h5>
+        <p class="card-text">{{ rider_detail.contact_number }}</p>
+        <p class="card-text">{{ rider_detail.address }}</p>
+        <p class="card-text">{{ rider_vehicle_number }}</p>
+        <a href="{% url 'edit_rider' rider_detail.id %}" class="btn btn-primary">Edit</a>
+        <a href="{% url 'delete_rider' rider_detail.id %}" class="btn btn-danger">Delete</a>
+    </div>
+</div>
+{% endblock %}

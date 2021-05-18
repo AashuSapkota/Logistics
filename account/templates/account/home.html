@@ -1,0 +1,32 @@
+<style>
+    .block {
+    background: blue;
+    color: #fff;
+    text-decoration: none;
+    padding: 75px;
+    margin-top: 30px;
+}
+</style>
+
+
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+<h3>Hello from home page</h3>
+<div class="row text-center mb-20">
+    <div class="col-md-4">
+        <a href="{% url 'order_list' %}"><div class="block" ><h3>Order</h3></div></a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'rider_list' %}"><div class="block" ><h3>Rider</h3></div></a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'vendor_list' %}"><div class="block" ><h3>Vendor</h3></div></a>
+    </div>
+</div>
+
+</div>
+</div>
+
+
+{% endblock %}

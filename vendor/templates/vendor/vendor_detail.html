@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block body %}
+<div>
+    <h1>Rider Detail</h1>
+</div>
+
+<div class="card" style="width: 18rem;">
+    <img src="{{ vendor_detail.vendor_img.url }}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{ vendor_detail.vendor_name }}</h5>
+        <p class="card-text">{{ vendor_detail.contact_number }}</p>
+        <p class="card-text">{{ vendor_detail.address }}</p>
+        <p class="card-text">{{ vendor_detail.vendor_contact_person }}</p>
+        <p class="card-text">{{ vendor_detail.vendor_contact_person_number }}</p>
+        <a href="{% url 'edit_vendor' vendor_detail.id %}" class="btn btn-primary">Edit</a>
+        <a href="{% url 'delete_vendor' vendor_detail.id %}" class="btn btn-danger">Delete</a>
+    </div>
+</div>
+{% endblock %}
